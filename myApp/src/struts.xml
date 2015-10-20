@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.ui.theme" value="simple" />
+
+	<package name="myApp" extends="struts-default">
+	
+	<action name="login" class="com.Action.UserAction"
+			method="validateUser">
+			<result name="success">/home.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>	
+	
+	<action name="logout" class="com.Action.UserAction"
+			method="logoutUser">
+			<result name="login">/login.jsp</result>
+		</action>
+	
+	<action name="home" class="com.Action.UserAction"
+			method="homepage">
+			<result name="homes">/Home.jsp</result>
+		</action>
+		
+		<action name="inwards" class="com.Action.InwardsAction"
+			method="inwardsPage">
+			<result name="success">/Inwards.jsp</result>
+		</action>
+		
+		<action name="supplierDetails" class="com.Action.SupplierDtlsAction"
+			method="suplierDetailsPage">
+			<result name="success">/SupplierDetails.jsp</result>
+		</action> 
+		
+		<action name="insertSupplierDtls" class="com.Action.SupplierDtlsAction"
+			method="insertSupplierDtls">
+			<result name="success" type="chain">supplierDetails</result>
+			<result name="error" type="chain">inwards</result>
+		</action>
+		
+		<action name="deleteSupplier" class="com.Action.SupplierDtlsAction"
+			method="deleteSupplierDtls">
+			<result name="success" type="chain">supplierDetails</result>
+			<result name="error" type="chain">inwards</result>
+		</action>
+		
+		
+		
+		<action name="settings" class="com.Action.SettingsAction"
+			method="settingsPage">
+			<result name="success">/Settings.jsp</result>
+		</action> 
+	
+	    <action name="country" class="com.Action.SettingsAction"
+			method="countryPage">
+			<result name="success">/Country.jsp</result>
+		</action> 
+		<action name="state" class="com.Action.SettingsAction"
+			method="statePage">
+			<result name="success">/State.jsp</result>
+		</action>
+		
+		<action name="contact" class="com.Action.ContactAction"
+			method="contactPage">
+			<result name="success">/SupplierContact.jsp</result>
+		</action>
+	
+	
+	
+	
+	</package>
+	
+	<!-- <package name="default" extends="json-default">
+   <action name="ajaxAction" class="com.Action.AjaxJsonAction">
+   <result type="json">
+        <param name="excludeNullProperties">true</param>
+        <param name="noCache">true</param>
+   </result>
+   </action>
+</package> -->
+</struts>
